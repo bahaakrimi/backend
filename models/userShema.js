@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema(
             default: "client.png",
             required: false,
         },
+        age : {type : Number},
         count: {
             type: Number,
           

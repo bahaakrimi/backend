@@ -3,10 +3,10 @@ const userModel = require('../models/userShema');
 module.exports.addUserClient = async (req,res) => {
     try{
 
-        const{ username , email , password } = req.body;
+        const{ username , email , password , age } = req.body;
         const roleClient = 'client';
         const user = await userModel.create({
-            username, email, password, role: roleClient
+            username, email, password, role: roleClient , age
 
         })
 
@@ -98,3 +98,47 @@ module.exports.deleteUserById = async (req,res) => {
 
     }
 }
+module.exports.updateuserById = async (req, res) => {
+    try {
+        const {id} = req.params
+        const {email , username} = req.body;
+    
+        await userModel.findByIdAndUpdate(id,{$set : {email , username }})
+        const updated = await userModel.findById(id)
+    
+        res.status(200).json({updated})
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
+module.exports.getAllUsersSortByAge= async (req,res) => {
+
+    try {
+        const userListe = await userModel.find().sort({age : 1})
+        //const userListe = await userModel.find().sort({age : -1}).limit(2)
+    
+        res.status(200).json({userListe});
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+}
+   module.exports.getAllClient= async (req,res) => {
+        try {
+
+            const userListe = await userModel.find({role : "client"})
+    
+            res.status(200).json({userListe});
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    }
+    module.exports.getAllAdmin= async (req,res) => {
+        try {
+
+            const userListe = await userModel.find({role : "admin"})
+    
+            res.status(200).json({userListe});
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    }
