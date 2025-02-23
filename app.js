@@ -15,6 +15,8 @@ var usersRouter = require('./routes/usersRouter');
 var osRouter = require('./routes/osRouter');
 var produitRouter = require('./routes/produitRouter');
 var commandeRouter = require('./routes/commandeRouter');
+var paiementRoute = require('./routes/paiementRoute');
+
 
 
 
@@ -32,6 +34,8 @@ app.use('/users', usersRouter);
 app.use('/os', osRouter);
 app.use('/produit', produitRouter);
 app.use('/commande', commandeRouter);
+app.use('/paiement', paiementRoute);
+
 
 
 

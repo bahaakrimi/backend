@@ -5,6 +5,10 @@ const commandeController =require('../controllers/commandeController');
 router.post('/addCommande',commandeController.addCommande );
 router.get('/getAllCommande',commandeController.getAllCommande );
 router.get('/getCommandeById/:id',commandeController.getCommandeById );
+router.put('/updateCommende/:id',commandeController.updateCommende);
+router.delete('/deletecommandeById/:id',commandeController.deletecommandeById);
+
+
 
 
 
